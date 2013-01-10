@@ -15,28 +15,35 @@ import sys
 
 print sys.getdefaultencoding()
 
-electyear = str(2012)
-electdatestring = str(20121012)
-electtype = 'Kraj'
+## SET PARAMETERS
+electyear = 2008
+electtype = 'kz' # 'kz', 'ps', or 'oz'
+pocetkandidatek = 100
+vsechnykraje = range(1, 14)
+votetype = 'Hlasy' # can be "Hlasy", "PrefHlasy" or "Ucast"
+unitobs = 'KandidatKraj' # specify unit of observation and unit of aggregation
 
-csvout = './CSVKraje/Kraje_CandRegDetails_' + electtype + '_' + electyear + '.csv'
-kandidati2 = open(csvout, 'wb')
-writer = csv.writer(kandidati2)
+electyr = str(electyear)
+electyrshrt = str(electyr[2]) + str(electyr[3])
+electdatestring = electyr + str('1017')
+
+csvout = '../data-votes/' + electtype + electyr + '/' \
++ electtype + electyrshrt + '_' + votetype + '_' + unitobs + '.csv'
+outfile = open(csvout, 'wb')
+writer = csv.writer(outfile)
 headerrow = ['Kraj', 'Kandidatka', 'PoradiKand', 'KandJmeno', 'KandJmenoPrijmeni', \
              'KandKrestniJmeno', 'KandTitul', 'Povolani', 'Bydliste', 'KandVek', \
              'Hlasy', 'Procenta', 'Mandat', 'PoradiVysl', 'Prislusnost', \
              'NavrhujiciStrana', 'URL']
 writer.writerow(headerrow)
 
-vsechnykraje = range(1, 14)
-pocetkandidatek = 100
 vsechnykandidatky = range(1, pocetkandidatek + 1)
 for partaj in vsechnykandidatky:
     for kraj in vsechnykraje:
-        urldat = 'http://volby.cz/pls/kz' + electyear + '/kz111?xjazyk=CZ&xdatum=' + \
+        urldat = 'http://volby.cz/pls/kz' + electyr + '/kz111?xjazyk=CZ&xdatum=' + \
         electdatestring + '&xkraj=' + str(kraj) + '&xstrana=' + str(partaj) + '&xv=1&xt=1'
         print urldat
-        print 'Partaj: ' + str(partaj)
+        print 'Strana: ' + str(partaj)
         print "Kraj: " + str(kraj)
         response = urllib2.urlopen(urldat)
         html0 = response.read()
@@ -100,7 +107,6 @@ for partaj in vsechnykandidatky:
                 else:
                     jmenoprijmeni = jmenolist[0]
                     titul = jmenolist[1]
-                print jmenoprijmeni
 
                 krestnijmeno = jmenoprijmeni.split(" ")[-1]
 
