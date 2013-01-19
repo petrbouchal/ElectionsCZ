@@ -21,11 +21,14 @@ from datetime import datetime
 
 electyear = str(2012)
 electdatestring = str(20121012)
-electtype = 'Kraj'
+electtype = 'KZ'
+votetype = 'Hlasy' # can be "Hlasy", "PrefHlasy" or "Ucast"
+unitobs = 'KandidatObec' # specify unit of observation and unit of aggregation
 
-csvin = './CSVKraje/Kraje_TownPrecinctData_' + electtype + '_' + electyear + '.csv'
+csvin = './data-input/' + electtype + electyear + '_ObceOkrsky.csv'
 
-csvout = './CSVKraje/Kraje_CandTown_' + electtype + '_' + electyear + '.csv'
+csvout = './data-votes/' + electtype + electyear + '/' + electtype + \
+         electyear + votetype + "_" + unitobs + '.csv'
 kandidati = open(csvout, 'wb')
 writer = csv.writer(kandidati)
 headerrow = ['CisloObce', 'NazevObce', 'Okres', 'Kraj', 'Poradi', 'Jmeno', \
@@ -55,7 +58,7 @@ print "Found approx. " + str(len(regpartyodkazy)) + " links to party-region resu
 
 # prepare for list of links to all party-town results and equivalent party-region pages
 f = open(csvin, 'rb')
-vesnicedata = csv.reader(f)
+obcedata = csv.reader(f)
 
 pocetkandidatek = 95
 vsechnykandidatky = range(1, pocetkandidatek + 1)

@@ -114,4 +114,4 @@ for partaj in vsechnykandidatky:
                        krestnijmeno, titul, povolaniA, bydlisteA, vekA, \
                        hlasyA, procentaA, mandatA, poradiVyslA, prislusnostA, \
                        navrhStranaA, urldat]
-                writer.writerow(row)
+                #writer.writerow(row)

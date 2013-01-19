@@ -1,0 +1,4 @@
+Různé úrovně obsahují různou míru detailu - účast, údaje o kandidátech atd., pro nejbohatší data je tedy potřeba různé tabulky spojovat. Čísla obcí odpovídají správní evidenci, čísla krajů a okresů nikoli - jsou pouze identifikační.
+
+Získáno z www.volby.cz, scraper v nedokonalé a málo dokumentované formě je na https://github.com/petrbouchal/ElectionsCZ.
+
