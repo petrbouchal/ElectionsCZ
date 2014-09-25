@@ -13,7 +13,7 @@ import urllib2
 import csv
 import time
 
-csvin = './CSVKraje/Kraje_TownPrecinctData.csv'
+csvin = './CSVKraje/Kraje_TownPrecinctDataXX.csv'
 
 f = open(csvin, 'rb')
 vesnicedata = csv.reader(f)
